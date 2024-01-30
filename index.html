@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="width: 200px; height: 200px;">
+        <img id="img" src="" alt="hksjfk" />
+    </div>
+    
+  </body>
+
+  <script>
+    var img = document.getElementById("img");
+    
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/billa`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (data) {
+          img.src = data.image;
+          console.log(data);
+        }
+      } catch (error) {
+        console.error("Error during signup:", error);
+        // Handle the error gracefully, e.g., display an error message to the user
+      }
+    };
+
+    fetchData();
+  </script>
+</html>
